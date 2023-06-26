@@ -23,9 +23,8 @@ import java.util.Set;
         @Index(columnList = "createAt"),
         @Index(columnList = "createBy")
 })
-@EntityListeners(AuditingEntityListener.class) //auditing을 사용하려면  @EntityListeners 적용해야함
 @Entity
-public class Article{
+public class Article extends AuditingFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //자동으로 Auto Increment를 걸어주기를 위함
@@ -40,11 +39,9 @@ public class Article{
     @OrderBy("id") //정렬
     @OneToMany(mappedBy = "article" , cascade = CascadeType.ALL) //article 테이블로부터 왔다는걸 표시  실무에서는 양방향 바인딩을 일부로 푼 경우가 많음
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
-    //auditing
-    @CreatedDate @Column(nullable = false) private LocalDateTime createAt; //생성일  최초의insert할때 넣어줌
-    @CreatedBy @Column(nullable = false, length = 100) private String createBy; //생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; //수정일     실시간으로 작성 한걸 넣어줌
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; //수정자
+
+
+
 
     //모든 jpa엔티티들은 하이버네이트를 기준으로 기본 생성자를 가지고 있어야함
     protected Article() {}
