@@ -1,5 +1,6 @@
 package com.sungjin.boardproject.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 // @WebMvcTest 얘는 슬라이스형태의 유닛테스트라 test가 안됨(data rest의 autoconfiguration 을 안읽음) 그러므로 통합테스트로 진행
+@Disabled("Spring Data REST 통합테스트는 불필요하므로 제외시킴")
 @DisplayName("Data Rest - API테스트")
 @Transactional
 @AutoConfigureMockMvc
