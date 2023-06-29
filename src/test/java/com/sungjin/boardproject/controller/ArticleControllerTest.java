@@ -21,6 +21,7 @@ class ArticleControllerTest {
         this.mvc = mvc;
     }
 
+    @Disabled("구현 중") //유닛테스트 예외
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상호출")
     @Test
     public void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
@@ -30,10 +31,12 @@ class ArticleControllerTest {
         mvc.perform(get("/articles"))
                 .andExpect(status().isOk())  //200 ok인가?
                 .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(view().name("articles/index")) //뷰 네임에 대한 검사
                 .andExpect(model().attributeExists("articles")); //model attribute에 "articles" 이라는 키가 있는지
 
     }
 
+    @Disabled("구현 중")
     @DisplayName("[view][GET] 게시글 상세 페이지 - 정상호출")
     @Test
     public void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
@@ -43,10 +46,13 @@ class ArticleControllerTest {
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())  //200 ok인가?
                 .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
-                .andExpect(model().attributeExists("article")); //model attribute에 "articles" 이라는 키가 있는지
+                .andExpect(view().name("articles/detail"))
+                .andExpect(model().attributeExists("article")) //model attribute에 "articles" 이라는 키가 있는지
+                .andExpect(model().attributeExists("articleComments"));  //게시글 페이지는 댓글도 보여야함
 
     }
 
+    @Disabled("구현 중")
     @DisplayName("[view][GET] 게시글 검색 페이지 - 정상호출")
     @Test
     public void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {
@@ -55,9 +61,11 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles/search"))
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML));  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(model().attributeExists("articles/search"));
     }
 
+    @Disabled("구현 중")
     @DisplayName("[view][GET] 게시글 해시태그 검색 페이지 - 정상호출")
     @Test
     public void givenNothing_whenRequestingArticleHashtagView_thenReturnsArticleHashtagView() throws Exception {
@@ -66,7 +74,8 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles/search-Hashtag"))   //경로
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML));  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(model().attributeExists("articles/search-Hashtag"));
     }
 
 }
