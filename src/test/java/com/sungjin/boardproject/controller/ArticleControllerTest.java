@@ -44,7 +44,7 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("article")) //model attribute에 "articles" 이라는 키가 있는지
                 .andExpect(model().attributeExists("articleComments"));  //게시글 페이지는 댓글도 보여야함
@@ -60,7 +60,7 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles/search"))
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
                 .andExpect(model().attributeExists("articles/search"));
     }
 
@@ -73,7 +73,7 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles/search-Hashtag"))   //경로
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
                 .andExpect(model().attributeExists("articles/search-Hashtag"));
     }
 
