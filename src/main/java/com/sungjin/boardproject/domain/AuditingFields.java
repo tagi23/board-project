@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 @EntityListeners(AuditingEntityListener.class) //auditing을 사용하려면  @EntityListeners 적용해야함
 @MappedSuperclass
-public class AuditingFields {
+public abstract class AuditingFields {
 
     //auditing
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) //parsing을 위해서 설정
