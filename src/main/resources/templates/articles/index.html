@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,7 +10,7 @@
 
 <body>
 
-    <header th:replace="header :: header"></header>  <!--root 디렉토리에서부터 header를 찾아가라(id지정이나 클래스 지정과 같이도 됨)-->
+    <header id="header"></header>  <!--root 디렉토리에서부터 header를 찾아가라(id지정이나 클래스 지정과 같이도 됨)-->
 
     <main>
         <form> <!--필터:제목,본문,아이디,닉네임,해시태그-->
@@ -71,7 +71,7 @@
             </nav>
     </main>
 
-    <footer th:replace="footer :: footer"></footer>
+    <footer id="footer"></footer>
 
 </body>
 </html>
