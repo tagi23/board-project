@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판 페이지</title>
+</head>
+
+<body>
+
+    <header id="header"></header>  <!--root 디렉토리에서부터 header를 찾아가라(id지정이나 클래스 지정과 같이도 됨)-->
+
+    <main>
+        <form> <!--필터:제목,본문,아이디,닉네임,해시태그-->
+            <label for="search-type" hidden>유형</label>
+            <select id = "search-type" name="search-type">
+                <option>제목</option>
+                <option>본문</option>
+                <option>아이디</option>
+                <option>닉네임</option>
+                <option>해시태그</option>
+            </select>
+            <label for="search-value" hidden></label>
+            <input id="search-value" type="search" placeholder="검색어..." name="search-value">
+            <button type="submit">검색</button>
+        </form>
+
+        <table>   <!--테이블-->
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>해시태그</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>첫글</td>
+                    <td>#Java</td>
+                    <td>김성진</td>
+                    <td>2023-06-30</td>
+                </tr>
+                <tr>
+                    <td>두번째글</td>
+                    <td>#Java</td>
+                    <td>김성진</td>
+                    <td>2023-06-30</td>
+                </tr>
+                <tr>
+                    <td>세번째글</td>
+                    <td>#Java</td>
+                    <td>김성진</td>
+                    <td>2023-06-30</td>
+                </tr>
+            </tbody>
+        </table>
+            <nav> <!--네비게이션 바-->
+                <table>
+                    <tr>
+                        <td>previous</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>next</td>
+                    </tr>
+                </table>
+            </nav>
+    </main>
+
+    <footer id="footer"></footer>
+
+</body>
+</html>
