@@ -34,7 +34,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' //custom property
     // queryDSL 설정
     implementation "com.querydsl:querydsl-jpa"
     implementation "com.querydsl:querydsl-core"
