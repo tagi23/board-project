@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -21,7 +20,7 @@ class ArticleControllerTest {
         this.mvc = mvc;
     }
 
-    @Disabled("구현 중") //유닛테스트 예외
+
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상호출")
     @Test
     public void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
@@ -30,7 +29,7 @@ class ArticleControllerTest {
         //when & then
         mvc.perform(get("/articles"))
                 .andExpect(status().isOk())  //200 ok인가?
-                .andExpect(content().contentType(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))  //컨텐트 타입이 무엇인지 /이그젝트 매칭이 옳지않음 utf8 땜에
                 .andExpect(view().name("articles/index")) //뷰 네임에 대한 검사
                 .andExpect(model().attributeExists("articles")); //model attribute에 "articles" 이라는 키가 있는지
 
