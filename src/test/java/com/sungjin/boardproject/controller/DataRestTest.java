@@ -11,13 +11,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-// @WebMvcTest 얘는 슬라이스형태의 유닛테스트라 test가 안됨(data rest의 autoconfiguration 을 안읽음) 그러므로 통합테스트로 진행
-@Disabled("Spring Data REST 통합테스트는 불필요하므로 제외시킴")
+//@WebMvcTest //얘는 슬라이스형태의 유닛테스트라 test가 안됨(data rest의 autoconfiguration 을 안읽음) 그러므로 통합테스트로 진행
+//@Disabled("Spring Data REST 통합테스트는 불필요하므로 제외시킴")
 @DisplayName("Data Rest - API테스트")
 @Transactional
 @AutoConfigureMockMvc
@@ -91,5 +91,19 @@ public class DataRestTest {
                 .andExpect(content().contentType(MediaType.valueOf("application/hal+json"))) //hal이 없기에 valueof로 직접지정
                 .andDo(print());
 
+    }
+
+    @DisplayName("[api] 회원 관련 API 는 일체 제공하지 않는다.")
+    @Test
+    void givenNothing_whenRequestingUserAccounts_thenThrowsException() throws Exception {
+        // Given
+
+        // When & Then
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(post("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(put("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(patch("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(delete("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(head("/api/userAccounts")).andExpect(status().isNotFound());
     }
 }
