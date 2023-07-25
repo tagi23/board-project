@@ -29,5 +29,5 @@ Spring Boot
 그 외
 
 * QueryDSL 5.0.0
-* Bootstrap 5.2.0  
+* Bootstrap 5.2.0
  
